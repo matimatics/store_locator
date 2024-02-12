@@ -1,0 +1,593 @@
+/*=============== GOOGLE FONTS ===============*/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+/*=============== VARIABLES CSS ===============*/
+
+    :root {
+    --header-height: 3rem;
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    /*
+    Purple: hsl(250, 66%, 75%)
+    Blue: hsl(207, 90%, 72%)
+    Pink: hsl(356, 66%, 75%)
+    Teal: hsl(174, 63%, 62%)
+*/
+    --first-hue: 207;
+    --sat: 90%;
+    --lig: 72%;
+    --second-hue: 219;
+    --first-color: hsl(var(--first-hue), var(--sat), var(--lig));
+    --first-color-alt: hsl(var(--first-hue), var(--sat), 68%);
+    /* -4% */
+    --title-color: #0B0A0A;
+    --text-color: hsl(var(--second-hue), 8%, 35%);
+    --text-color-light: #707070;
+    --body-color: #FFF;
+    --main-color: #003e69;
+    --container-color: #FFF;
+    --container-color-alt: #F0EFEF;
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: 'Poppins', Helvetica, Arial !important;
+    --biggest-font-size: 1.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .813rem;
+    --tiny-font-size: .625rem;
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semibold: 600;
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+    /*========== Margenes ==========*/
+    --mb-1: .5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+}
+/* Responsive typography */
+
+@media screen and (min-width: 968px) {
+        :root {
+        --biggest-font-size: 2.5rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/*=============== SECTION SEARCH ===============*/
+.content {
+    background-color: var(--body-color) !important;
+    min-height: 100vh !important;
+    height: auto !important;
+    width: 100% !important;
+}
+
+.search__bar {
+    width: 100% !important;
+    background-color: var(--main-color) !important;
+    padding: 20px 20px 20px 20px !important;
+    height: 40vh !important;
+}
+
+.search__bar h1 {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #F0EFEF !important;
+    margin-top: 10px !important;
+}
+.search__bar .label {
+    color: #F0EFEF !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+    margin-bottom: 15px !important;
+    margin-top: 40px !important;
+}
+
+.search__bar .searchbar {
+    padding: 10px !important;
+    min-width: 100% !important;
+    margin-bottom: 20px !important;
+}
+
+.search__bar .button {
+    background-color: #ffe200 !important;
+    padding: 20px 20px !important;
+    border: none !important;
+    outline: none !important;
+    color: #003e69 !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    border-radius: 0px !important;
+}
+
+.search__bar .button:hover {
+    cursor: pointer !important;
+    background-color: #eed200 !important;
+}
+
+input {
+    font-family: 'Poppins', Helvetica, Arial, sans-serif !important;
+    color: var(--text-color) !important;
+}
+
+input:focus {
+    outline: none !important;
+}
+
+
+/*=============== SECTION RESULT LIST ===============*/
+
+.list {
+    width: 100% !important;
+    background-color: var(--body-color) !important;
+    padding: 30px 20px 20px 20px !important;
+}
+
+.list .city {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: #0B0A0A !important;
+    margin-top: 20px !important;
+    margin-bottom: 30px !important;
+}
+
+.list .card,
+.list .card-wedoor  {
+    background-color: #F0EFEF !important;
+    padding: 20px 0px !important;
+    margin-bottom: 20px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    transition: .3s !important;
+}
+
+.carte-wedoor p {
+    margin-top: 20px !important;
+}
+
+.list .card:hover,
+.list .card-wedoor:hover {
+    background-color: #e7e5e5 !important;
+    cursor: pointer !important;
+} 
+
+.list .card .data-wedoor {
+    padding-left: 0px !important;
+    font-size: 8px !important;
+    padding-right: 30px !important;
+    white-space: nowrap !important; /* Empêche le texte de passer à la ligne */
+    overflow: hidden !important; /* Cache le texte qui dépasse */
+    text-overflow: ellipsis !important; 
+    width: auto !important;
+    padding-top: 5px !important;
+    color: #0B0A0A !important;
+}
+
+.entreprise-info {
+    color: #0B0A0A !important;
+}
+
+.list .card-wedoor .data-wedoor {
+    font-size: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    white-space: nowrap !important; /* Empêche le texte de passer à la ligne */
+    overflow: hidden !important; /* Cache le texte qui dépasse */
+    text-overflow: ellipsis !important; 
+    width: auto !important;
+    padding-top: 5px !important;
+}
+
+.list .card-wedoor .web__link {
+    font-size: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    color: #ffe200 !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.list .card-wedoor .etiquette {
+    background-color: #ffe200 !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    margin-right: 10px !important; /* Garde l'étiquette à droite de 20px */
+    margin-left: auto !important; /* Ajoute une marge à gauche pour maintenir l'étiquette à droite */
+    font-size: 8px !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: .3s !important;
+    white-space: nowrap !important; /* Empêche le texte de passer à la ligne */
+    overflow: hidden !important; /* Cache le texte qui dépasse */
+    text-overflow: ellipsis !important; 
+    width: 15% !important;
+    color: var(--main-color) !important;
+}
+
+.list .card-wedoor .etiquette:hover {
+    background-color: #eed200 !important;
+    cursor: pointer !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.footer {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 50px !important;
+    background-color: var(--main-color) !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 1 !important;
+}
+
+.footer .data-wedoor,
+.footer .data-wedoor .bold {
+    text-align: center !important;
+    color: #F0EFEF !important;
+    z-index: 1 !important;
+}
+
+.card.carte-non-wedoor {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.carte-non-wedoor.clicked {
+    height: auto !important;
+    width: 100% !important; /* Agrandir la largeur à 100% lors du clic */
+}
+.entreprise-info {
+    display: none !important;
+    padding: 50px !important;
+    width: 60% !important;
+}
+
+.colonnes {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+/* CSS pour afficher les informations sous l'adresse */
+.carte-non-wedoor.clicked .entreprise-info,
+.carte-non-wedoor.clicked .carte-entreprise {
+    display: block !important;
+    margin-top: 10px !important; /* Espace entre l'adresse et les informations */
+}
+
+/* Style pour espacer les sections de formulaire */
+.form-section-spacer {
+    margin-bottom: 20px !important; /* Espace entre les sections */
+}
+
+/* Style pour aligner horizontalement les champs de formulaire */
+.form-section {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.form-group {
+    flex: 1 !important;
+    margin-right: 20px !important; /* Espace entre les champs de formulaire */
+}
+
+/* Style pour la largeur des labels */
+label {
+    flex-basis: 30% !important; /* Largeur des labels */
+}
+
+.modal {
+    font-family: 'Roboto', Helevetica !important;
+    font-size: 24px !important;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+
+@media screen and (max-width: 320px) {
+    .search__bar {
+        padding: 20px 20px 20px 20px !important;
+        height: 30vh !important;
+    }
+    .search__bar h1 {
+        font-size: 16px !important;
+        margin-top: 10px !important;
+    }
+    .search__bar .label {
+        font-size: 12px !important;
+        margin-bottom: 15px !important;
+        margin-top: 40px !important;
+    }
+    
+    .search__bar .searchbar {
+        padding: 5px !important;
+        min-width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .search__bar .button {
+        padding: 20px 20px !important;
+        width: 100% !important;
+        margin-left: 0px !important;
+    }
+
+    /*=============== SECTION RESULT LIST ===============*/
+    .list {
+        padding: 30px 20px 20px 20px !important;
+    }
+    
+    .list .city {
+        font-size: 18px !important;
+    }
+    
+    .list .card .data-wedoor {
+        padding-left: 30px !important;
+        font-size: 8px !important;
+        padding-right: 30px !important;
+    }
+    
+    .list .card-wedoor .web__link {
+        font-size: 16px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    .list .card-wedoor .etiquette {
+        padding: 10px !important;
+        border-radius: 5px !important;
+        margin-right: 10px !important;
+        font-size: 6px !important;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .search__bar {
+        padding: 40px 20px 20px 20px !important;
+        height: 40vh !important;
+    }
+    .search__bar h1 {
+        font-size: 20px !important;
+        margin-top: 10px !important;
+    }
+    .search__bar .label {
+        font-size: 16px !important;
+        margin-bottom: 30px !important;
+        margin-top: 40px !important;
+    }
+    
+    .search__bar .searchbar {
+        padding: 10px !important;
+        min-width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .search__bar .button {
+        padding: 20px 20px !important;
+        width: 100% !important;
+        margin-left: 0px !important;
+    }
+
+    /*=============== SECTION RESULT LIST ===============*/
+    .list {
+        padding: 30px 20px 20px 20px !important;
+    }
+    
+    .list .city {
+        font-size: 22px !important;
+    }
+    
+    .list .card .data-wedoor {
+        padding-left: 30px !important;
+        font-size: 12px !important;
+        padding-right: 30px !important;
+    }
+    
+    .list .card-wedoor .web__link {
+        font-size: 18px !important;
+        padding-left: 10px !important;
+        padding-right: 0px !important;
+    }
+
+    .list .card-wedoor .data-wedoor {
+        font-size: 12px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-top: 5px !important;
+    }
+        
+    .list .card-wedoor .etiquette {
+        padding: 10px !important;
+        border-radius: 10px !important;
+        margin-right: 10px !important;
+        font-size: 10px !important;
+        width: 100px !important;
+    }
+}
+/* For medium devices */
+
+@media screen and (min-width: 767px) {
+    .search__bar {
+        padding: 60px 40px 40px 40px !important;
+        height: 40vh !important;
+    }
+    .search__bar h1 {
+        font-size: 28px !important;
+        margin-top: 10px !important;
+    }
+    .search__bar .label {
+        font-size: 16px !important;
+        margin-bottom: 30px !important;
+        margin-top: 20px !important;
+    }
+    
+    .search__bar .searchbar {
+        padding: 15px !important;
+        min-width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .search__bar .button {
+        padding: 20px 20px !important;
+        width: 100% !important;
+        margin-left: 0px !important;
+    }
+
+    /*=============== SECTION RESULT LIST ===============*/
+    .list {
+        padding: 40px 40px 40px 40px !important;
+    }
+    
+    .list .city {
+        font-size: 28px !important;
+    }
+    
+    .list .card .data-wedoor {
+        padding-left: 40px !important;
+        font-size: 14px !important;
+        padding-right: 30px !important;
+    }
+    
+    .list .card-wedoor .web__link {
+        font-size: 22px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .list .card-wedoor .data-wedoor {
+        font-size: 14px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+        
+    .list .card-wedoor .etiquette {
+        padding: 10px !important;
+        border-radius: 10px !important;
+        margin-right: 20px !important;
+        font-size: 12px !important;
+        width: 120px !important;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .search__bar {
+        padding: 60px 40px 40px 40px !important;
+        height: 40vh !important;
+    }
+    .search__bar h1 {
+        font-size: 28px !important;
+        margin-top: 10px !important;
+    }
+    .search__bar .label {
+        font-size: 16px !important;
+        margin-bottom: 30px !important;
+        margin-top: 20px !important;
+    }
+    
+    .search__bar .searchbar {
+        padding: 20px !important;
+        min-width: 70% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .search__bar .button {
+        padding: 25px 50px !important;
+        width: auto !important;
+        margin-left: -10px !important;
+    }
+    .list .card-wedoor .etiquette {
+        width: 110px !important;
+    }
+}
+
+/* For large devices */
+@media screen and (min-width: 1200px) {
+    .search__bar {
+        height: 50vh !important;
+        width: 100% !important;
+        padding: 100px 200px 200px 200px !important;
+    }
+    
+    .search__bar h1 {
+        font-size: 54px !important;
+        margin-top: 20px !important;
+    }
+    .search__bar .label {
+        font-size: 18px !important;
+        margin-bottom: 20px !important;
+        margin-top: 30px !important;
+    }
+    
+    .search__bar .searchbar {
+        padding: 20px !important;
+        min-width: 40% !important;
+        margin-bottom: 0px !important;
+    }
+    
+    .search__bar .button {
+        padding: 25px 50px !important;
+        margin-left: -5px !important;
+        transition: .3s !important;
+        width: auto !important;
+        border-radius: 0px !important;
+    }
+    
+    /*=============== SECTION RESULT LIST ===============*/
+    
+    .list {
+        width: 100% !important;
+        padding: 100px 200px 200px 200px !important;
+    }
+    
+    .list .city {
+        font-size: 32px !important;
+        font-weight: 600 !important;
+        margin-top: 20px !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .list .card,
+    .list .card-wedoor  {
+        padding: 20px 0px !important;
+        margin-bottom: 20px !important;
+        /*height: 70px !important;*/
+        width: 100% !important;
+    }
+    
+    .list .card .data-wedoor {
+        padding-left: 50px !important;
+    }
+    
+    .list .card-wedoor .web__link {
+        font-size: 22px !important;
+        padding-left: 40px !important;
+        padding-right: 20px !important;
+    }
+    
+    .list .card-wedoor .etiquette {
+        padding: 10px !important;
+        border-radius: 20px !important;
+        margin-right: 20px !important; 
+        font-size: 14px !important;
+        width: 120px !important;
+    }
+}
