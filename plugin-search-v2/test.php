@@ -77,9 +77,9 @@
 <body>
     <section class="content">
         <div class="search__bar">
-            <h1>Recherche d'entreprises par ville ou code postal</h1>
+            <h1>Trouver un expert proche de chez vous</h1>
             <form action="test.php" method="post">
-                <p class="label" for="ville">Ville ou code postal de recherche : </p>
+                <p class="label" for="ville">Recherche par ville ou code postal : </p>
                 <input class="searchbar" type="text" name="ville" id="ville" placeholder="Entrez une ville ou un code postal" required>
                 <input class="button" type="submit" value="Rechercher">
             </form>
