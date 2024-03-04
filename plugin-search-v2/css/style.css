@@ -79,7 +79,7 @@
     height: 40vh !important;
 }
 
-.search__bar h1 {
+.search__bar h2 {
     font-size: 16px !important;
     font-weight: 600 !important;
     color: #F0EFEF !important;
@@ -100,7 +100,7 @@
 }
 
 .search__bar .button {
-    background-color: #ffe200 !important;
+    background-color: #d9b448 !important;
     padding: 20px 20px !important;
     border: none !important;
     outline: none !important;
@@ -124,7 +124,6 @@ input:focus {
     outline: none !important;
 }
 
-
 /*=============== SECTION RESULT LIST ===============*/
 
 .list {
@@ -139,6 +138,11 @@ input:focus {
     color: #0B0A0A !important;
     margin-top: 20px !important;
     margin-bottom: 30px !important;
+}
+
+.title-plugin-wedoor {
+    color: white !important;
+    font-weight: bold !important;
 }
 
 .list .card,
@@ -193,14 +197,14 @@ input:focus {
     font-size: 16px !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    color: #ffe200 !important;
+    color: #d9b448 !important;
     text-align: center !important;
     display: flex !important;
     align-items: center !important;
 }
 
 .list .card-wedoor .etiquette {
-    background-color: #ffe200 !important;
+    background-color: #d9b448 !important;
     padding: 10px !important;
     border-radius: 5px !important;
     margin-right: 10px !important; /* Garde l'étiquette à droite de 20px */
@@ -309,7 +313,7 @@ label {
         padding: 20px 20px 20px 20px !important;
         height: 30vh !important;
     }
-    .search__bar h1 {
+    .search__bar h2 {
         font-size: 16px !important;
         margin-top: 10px !important;
     }
@@ -365,7 +369,7 @@ label {
         padding: 40px 20px 20px 20px !important;
         height: 40vh !important;
     }
-    .search__bar h1 {
+    .search__bar h2 {
         font-size: 20px !important;
         margin-top: 10px !important;
     }
@@ -430,7 +434,7 @@ label {
         padding: 60px 40px 40px 40px !important;
         height: 40vh !important;
     }
-    .search__bar h1 {
+    .search__bar h2 {
         font-size: 28px !important;
         margin-top: 10px !important;
     }
@@ -493,7 +497,7 @@ label {
         padding: 60px 40px 40px 40px !important;
         height: 40vh !important;
     }
-    .search__bar h1 {
+    .search__bar h2 {
         font-size: 28px !important;
         margin-top: 10px !important;
     }
@@ -527,8 +531,8 @@ label {
         padding: 100px 200px 200px 200px !important;
     }
     
-    .search__bar h1 {
-        font-size: 54px !important;
+    .search__bar h2 {
+        font-size: 44px !important;
         margin-top: 20px !important;
     }
     .search__bar .label {

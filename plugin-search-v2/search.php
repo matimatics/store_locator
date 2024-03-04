@@ -61,7 +61,7 @@
 
         .carte-non-wedoor .web__link {
             font-size: 22px !important;
-            color: #ffe200 !important;
+            color: #d9b448 !important;
             width: 50px !important;
             z-index: 1 !important;
         }
@@ -72,7 +72,7 @@
 <body>
     <section class="content">
         <div class="search__bar">
-            <h1>Recherche d'entreprises par ville ou code postal</h1>
+            <h1 class="title-plugin-wedoor">Recherche d'entreprises par ville ou code postal</h1>
             <form action="https://wedoor.fr/expert" method="post">
                 <p class="label" for="ville">Ville ou code postal de recherche : </p>
                 <input class="searchbar" type="text" name="ville" id="ville" placeholder="Entrez une ville ou un code postal" required>
