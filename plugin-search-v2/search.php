@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,12 +20,16 @@
         .card.carte-non-wedoor {
             display: flex !important;
             flex-direction: column !important;
-            transition: height 0.5s; /* Ajoutez une transition de hauteur de 0.5 seconde */
+            transition: height 0.5s;
+            /* Ajoutez une transition de hauteur de 0.5 seconde */
         }
+
         .carte-non-wedoor.clicked {
             height: auto !important;
-            width: 100% !important; /* Agrandir la largeur à 100% lors du clic */
+            width: 100% !important;
+            /* Agrandir la largeur à 100% lors du clic */
         }
+
         .entreprise-info {
             display: none !important;
             padding: 50px !important;
@@ -40,7 +45,8 @@
         .carte-non-wedoor.clicked .entreprise-info,
         .carte-non-wedoor.clicked .carte-entreprise {
             display: block !important;
-            margin-top: 10px !important; /* Espace entre l'adresse et les informations */
+            margin-top: 10px !important;
+            /* Espace entre l'adresse et les informations */
         }
 
         /* Ajoutez du CSS pour la carte Mapbox */
@@ -65,18 +71,20 @@
             width: 50px !important;
             z-index: 1 !important;
         }
-
     </style>
 
 </head>
+
 <body>
     <section class="content">
         <div class="search__bar">
             <h1 class="title-plugin-wedoor">Trouver un expert proche de chez vous</h1>
             <form action="https://wedoor.fr/expert" method="post">
                 <p class="label" for="ville">Recherche par ville ou code postal :</p>
-                <input class="searchbar" type="text" name="ville" id="ville" placeholder="Entrez une ville ou un code postal" required>
-                <input class="button" type="submit" value="Rechercher">
+                <div class="plugin-searchbar">
+                    <input class="searchbar" type="text" name="ville" id="ville" placeholder="Entrez une ville ou un code postal" required>
+                    <input class="button" type="submit" value="Rechercher">
+                </div>
 
                 <p class="label" for="ville"><i class='bx bx-info-circle'></i> La recherche peut durer jusque 10 secondes.</p>
             </form>
@@ -85,7 +93,7 @@
         <!-- Vous pouvez ajouter ici une barre de chargement ou une icône de chargement -->
         <div class="list" id="liste-entreprises">
 
-        <?php
+            <?php
             // Récupérer la ville ou le code postal de recherche depuis le formulaire (en maintenant la casse)
             $villeRecherche = trim($_POST['ville']);
 
@@ -101,22 +109,23 @@
                 $response = file_get_contents($url);
                 $data = json_decode($response, true);
 
-                
+
                 $lat = $data['results'][0]['geometry']['lat'];
                 $lng = $data['results'][0]['geometry']['lng'];
                 if (isset($data['results'][0]['geometry']['lat']) && isset($data['results'][0]['geometry']['lng'])) {
                     $lat = $data['results'][0]['geometry']['lat'];
                     $lng = $data['results'][0]['geometry']['lng'];
                     return ['lat' => $lat, 'lng' => $lng];
-                    } else {
-                        return null; // Ville non trouvée
-                        }
+                } else {
+                    return null; // Ville non trouvée
+                }
             }
 
-            function getPostalCode($villeRecherche, $api_key) {
+            function getPostalCode($villeRecherche, $api_key)
+            {
 
                 $data = getCoordinates($villeRecherche, $api_key);
-            
+
                 $cord1 = $data['lat'];
                 $cord2 = $data['lng'];
                 $url = "https://api.opencagedata.com/geocode/v1/json?q=$cord1,$cord2&key=$api_key&language=es&pretty=1";
@@ -127,7 +136,8 @@
                 return $deuxPremiers;
             }
 
-            function getFullPostalCode($villeRecherche, $api_key) {
+            function getFullPostalCode($villeRecherche, $api_key)
+            {
                 $data = getCoordinates($villeRecherche, $api_key);
                 $cord1 = $data['lat'];
                 $cord2 = $data['lng'];
@@ -137,8 +147,8 @@
                 $postCode = $json['results'][0]['components']['postcode'];
                 return $postCode;
             }
-            
-            if(is_numeric($villeRecherche)) {
+
+            if (is_numeric($villeRecherche)) {
                 $parsedPostalCode = substr($villeRecherche, 0, 2);
                 $villeFullPostal = $villeRecherche;
             } else {
@@ -146,7 +156,7 @@
                 $villeFullPostal = getFullPostalCode($villeRecherche, $api_key);
             }
 
-            if(isset($_POST['ville']) && !empty($_POST['ville'])){
+            if (isset($_POST['ville']) && !empty($_POST['ville'])) {
                 // Obtenez le chemin absolu du répertoire racine de WordPress
                 $wordpressAbsolutePath = ABSPATH;
 
@@ -163,14 +173,14 @@
                     67710, 67310, 67120, 67280, 67190, 67560, 67130, 67870, 67210, 67530, 67570, 67420, 67140, 67150, 67230, 67860, 67680, 67650, 67220, 67730, 67750, 67600, 67820, 67920, 67230, 67390, 68660, 68160, 67880, 67880, 67113
                 );
 
-                $codes_postaux_dos_reis = array (
+                $codes_postaux_dos_reis = array(
                     88630, 88350, 88300, 88170, 88140, 88320, 88800
                 );
 
                 // Extrait les deux premiers chiffres du code postal
                 $deux_premiers_chiffres = substr($villeRecherche, 0, 2);
 
-                if(in_array($villeFullPostal, $codes_postaux_fermetures_berger) || ($deux_premiers_chiffres === "39") || in_array($villeFullPostal, $codes_postaux_dos_reis)) {
+                if (in_array($villeFullPostal, $codes_postaux_fermetures_berger) || ($deux_premiers_chiffres === "39") || in_array($villeFullPostal, $codes_postaux_dos_reis)) {
                     if (in_array($villeFullPostal, $codes_postaux_fermetures_berger)) {
                         echo "<h2 class='city'>Résultat pour : $villeRecherche </h2>";
                         echo "<a href='https://wedoor.fr/expert/porte-de-garage-alsace/' target='_blank'>
@@ -197,8 +207,8 @@
                         </div>
                     </div>";
 
-                    // Votre code JavaScript pour créer la carte pour cette entreprise
-                    echo "<script>
+                        // Votre code JavaScript pour créer la carte pour cette entreprise
+                        echo "<script>
                         mapboxgl.accessToken = 'pk.eyJ1IjoibHVjYXNjb21zZWUiLCJhIjoiY2xtb3VubGF2MWN1eTJrczVkNTZ1aDhrYiJ9.lvG9yk5bQEsl5ChnQg7jtg';
                         var entrepriseID = 'dos'; // ID de l'entreprise
 
@@ -219,7 +229,7 @@
                             .addTo(map_dos);
                     </script>";
                     }
-                  
+
 
                     // Vérifiez si les deux premiers chiffres correspondent au département 39 (Jura)
                     if ($deux_premiers_chiffres === "39") {
@@ -230,7 +240,7 @@
                                 <p class='etiquette'>03 84 47 38 61</p>
                             </div>
                         </a>";
-                        
+
                         echo "<a href='#'>
                             <div class='card-wedoor bold carte-wedoor'>
                                 <p class='data-wedoor'>JURA FERMETURES, Adresse : 493 Av. de Lattre de Tassigny, 39300 Champagnole</p>
@@ -238,7 +248,7 @@
                             </div>
                         </a>";
                     }
-                }else {
+                } else {
                     $file = fopen($csvAbsolutePath, 'r');
 
                     if ($file) {
@@ -255,7 +265,7 @@
                             $numTelephone = trim($data[7]);
                             $lienSiteWeb = trim($data[8]);
 
-                            $regionArea = substr($codePostal, 0 , 2);
+                            $regionArea = substr($codePostal, 0, 2);
 
                             if ($parsedPostalCode === $regionArea) {
                                 $entreprises[] = [
@@ -267,31 +277,31 @@
                                     'lien_site_web' => $lienSiteWeb,
                                     'num_telephone' => $numTelephone,
                                     'horaires_semaine' => $horairesSemaine,
-                                    'horaires_weekend' => $horairesWE 
+                                    'horaires_weekend' => $horairesWE
                                 ];
                             }
                         }
 
                         fclose($file);
-                    } 
+                    }
 
-                     // Trier les entreprises par leur appartenance à WEDOOR (1 en premier)
-                     usort($entreprises, function ($a, $b) {
+                    // Trier les entreprises par leur appartenance à WEDOOR (1 en premier)
+                    usort($entreprises, function ($a, $b) {
                         // Membre wedoor
                         $result = $b['membre_wedoor'] - $a['membre_wedoor'];
-    
+
                         // PostCode sort
                         if ($result == 0) {
                             $result = strcmp($a['code_postal'], $b['code_postal']);
                         }
-    
+
                         return $result;
                     });
-                
+
                     if (empty($entreprises)) {
                         echo "<h2 class='city'>Contacter WEDOOR : </h2>";
                         echo "<div class='entreprise-list'>";
-                            echo "<div class='card carte-non-wedoor' id='wedoor' onclick='toggleDetailsEntreprise(this)'>
+                        echo "<div class='card carte-non-wedoor' id='wedoor' onclick='toggleDetailsEntreprise(this)'>
                             <p class='data-wedoor'><i class='web__link bx bx-info-circle'></i> WEDOOR, Adresse : 1 Rue du Climont, 67220 TRIEMBACH-AU-VAL<p>
                             <div class='colonnes'>
                                 <div class='entreprise-info' style='display: none;'> <!-- Masquer les informations par défaut -->
@@ -323,13 +333,12 @@
                                 .setLngLat([longitude_mrg_habitat, latitude_mrg_habitat]) // Coordonnées de l'entreprise
                                 .addTo(map_mrg_habitat);
                         </script>";
-                    } 
-                    else {
+                    } else {
                         echo "<h2 class='city'>Résultats de la recherche pour la ville ou le code postal : $villeRecherche</h2>";
                         echo "<div class='entreprise-list'>";
 
                         //Exception pour MRG HABITAT
-                        if($villeRecherche == "01710"){
+                        if ($villeRecherche == "01710") {
                             echo "<a href='https://wedoor.fr/expert/porte-de-garage-pays-de-gex/' target='_blank'>
                                 <div class='card-wedoor bold carte-wedoor'>
                                     <i class='web__link bx bx-globe'></i>
@@ -359,8 +368,8 @@
                                         </div>
                                     </a>";
 
-                                    // Votre code JavaScript pour créer la carte pour cette entreprise
-                                    echo "<script>
+                                // Votre code JavaScript pour créer la carte pour cette entreprise
+                                echo "<script>
                                     mapboxgl.accessToken = 'pk.eyJ1IjoibHVjYXNjb21zZWUiLCJhIjoiY2xtb3VubGF2MWN1eTJrczVkNTZ1aDhrYiJ9.lvG9yk5bQEsl5ChnQg7jtg';
                                     var entrepriseID = '$entrepriseID'; // ID de l'entreprise
 
@@ -387,7 +396,7 @@
                                 if ($coordinates !== null) {
                                     $latitude = $coordinates['lat'];
                                     $longitude = $coordinates['lng'];
-                        
+
                                     echo "<div class='card carte-non-wedoor' id='$entrepriseID' onclick='toggleDetailsEntreprise(this)'>
                                         <p class='data-wedoor'><i class='web__link bx bx-info-circle'></i> {$entreprise['nom']}, Adresse : {$entreprise['adresse']}, {$entreprise['code_postal']} {$entreprise['ville']}<p>
                                         <div class='colonnes'>
@@ -430,9 +439,9 @@
                                         // Faites défiler la vue jusqu'à la section de liste
                                         listeEntreprises.scrollIntoView({ behavior: 'smooth' });
                                     </script>";
-                                } 
+                                }
 
-                                if($villeRecherche == "01710"){
+                                if ($villeRecherche == "01710") {
                                     echo "<div class='card carte-non-wedoor' id='mrg_habitat' onclick='toggleDetailsEntreprise(this)'>
                                     <p class='data-wedoor'><i class='web__link bx bx-info-circle'></i> MRG Habitat, Adresse : 13 Chemin de la Praille, 01710 THOIRY<p>
                                     <div class='colonnes'>
@@ -445,8 +454,8 @@
                                     </div>
                                 </div>";
 
-                                // Votre code JavaScript pour créer la carte pour cette entreprise
-                                echo "<script>
+                                    // Votre code JavaScript pour créer la carte pour cette entreprise
+                                    echo "<script>
                                     mapboxgl.accessToken = 'pk.eyJ1IjoibHVjYXNjb21zZWUiLCJhIjoiY2xtb3VubGF2MWN1eTJrczVkNTZ1aDhrYiJ9.lvG9yk5bQEsl5ChnQg7jtg';
                                     var entrepriseID = 'mrg_habitat'; // ID de l'entreprise
 
@@ -479,7 +488,6 @@
                         }
                         echo "</div>"; // Fermez la div pour la liste des entreprises
                     }
-                
                 }
             }
             ?>
@@ -513,4 +521,5 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
 
 </body>
+
 </html>

@@ -110,9 +110,14 @@
     border-radius: 0px !important;
 }
 
+.plugin-searchbar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0px !important;
+}
+
 .search__bar .button:hover {
     cursor: pointer !important;
-    background-color: #eed200 !important;
 }
 
 input {
